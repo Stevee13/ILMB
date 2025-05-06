@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Alerta de Domínio",
+  "version": "2.0",
+  "description": "Marca domínios suspeitos nos resultados do Google.",
+  "permissions": [],
+  "web_accessible_resources": [
+    {
+      "resources": ["dados.json"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/search*"],
+      "js": ["content.js"],
+      "css": ["style.css"]
+    }
+  ]
+}
