@@ -14,7 +14,6 @@ function extrairDominio(url) {
 }
 
 let dominiosSuspeitos = [];
-
 async function marcarResultados() {
   if (dominiosSuspeitos.length === 0) {
     dominiosSuspeitos = await carregarDominiosSuspeitos();
@@ -24,19 +23,24 @@ async function marcarResultados() {
 
   resultados.forEach(link => {
     const dominio = extrairDominio(link.href);
-    if (dominiosSuspeitos.includes(dominio)) {
+
+    if (dominiosSuspeitos.includes(dominio)){
       const h3 = link.querySelector("h3");
-      
+      const url_img = link.querySelector("div.Xxy7Vb");
+
       if (h3){
         h3.textContent = "SITE JÁ VISITADO";
         h3.classList.add("alerta-dominio")
+      }
+      if (url_img){
+	      url_img.textContent = "SITE JÁ VISITADO";
+	      url_img.classList.add("alerta-dominio")
       }
     }
     // Marcar o link como já verificado
     link.setAttribute("data-verificado", "true");
   });
 }
-
 // Executar inicialmente
 document.addEventListener("DOMContentLoaded", marcarResultados);
 
